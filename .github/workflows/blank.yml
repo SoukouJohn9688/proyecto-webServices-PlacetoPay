@@ -16,6 +16,7 @@ jobs:
   build:
     env: 
       nombre: "Pablo"
+      clave: ${{secrets.CLAVE_SECRETA}}
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -27,5 +28,8 @@ jobs:
         run: |
           echo ${{env.nombre}}
           echo $nombre
-          echo $CLAVE_SECRETA
+      - name: "Ahora si validar"
+        if: ${{env.clave=='caquita'}}
+        run: echo "Pisaste una caca"
+          
     
